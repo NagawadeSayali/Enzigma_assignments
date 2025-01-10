@@ -1,40 +1,37 @@
 package assignment;
+
+import java.io.IOException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-		public class Open_Nokodr {
-		    public static void main(String[] args) {
-		        // Path to your ChromeDriver executable
-		        System.setProperty("webdriver.chrome.driver", "C:\\Users\\hp\\Desktop\\seleniumData\\to\\chromedriver.exe"); // Replace with your ChromeDriver path
+public class Open_Nokodr {
 
-		        // Step 1: Open a browser (Chrome)
-		        WebDriver driver = new ChromeDriver();
-		        System.out.println("Opening browser...");
+    public static void main(String[] args) throws InterruptedException, IOException {
 
-		        try {
-		            // Step 2: Navigate to the noKodr platform
-		            String url = "https://app-staging.nokodr.com/";
-		            System.out.println("Navigating to " + url + "...");
-		            driver.get(url);
-		            // Optionally, wait for the page to load 
-		            String pageTitle = driver.getTitle();
-		            System.out.println("Page title: " + pageTitle);
-		            Thread.sleep(1000);
+        // Set the path to ChromeDriver
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\hp\\Desktop\\seleniumData\\to\\chromedriver.exe");
 
-		            // Keep the browser open for observation
-		            System.out.println("Press Enter in the console to close the browser...");
-		            System.in.read();
+        // Initialize WebDriver
+        WebDriver driver = new ChromeDriver();
 
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        } finally {
-		            // Step 3: Close the browser
-		            driver.quit();
-		            System.out.println("Browser closed.");
-		        }
-		    }
-		
+        // Maximize the browser window
+        driver.manage().window().maximize();
 
-	}
+        // Open the URL
+        driver.get("https://app-staging.nokodr.com/");
+        Thread.sleep(1000); // Adjust the sleep time if needed
 
+        // Get and print the page title
+        String pageTitle = driver.getTitle();
+        System.out.println("Page title: " + pageTitle);
 
+        // Keep the browser open for observation
+        System.out.println("Press Enter in the console to close the browser...");
+        System.in.read();
+
+        // Close the browser
+        driver.quit();
+        System.out.println("Browser closed.");
+    }
+}
